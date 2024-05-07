@@ -5,22 +5,26 @@
     </template>
   </el-input>
   <div class="content">
-    <el-row :gutter="10">
+    <el-row :gutter="20">
       <el-col :span="6" v-for="c in state.categories" v-bind:key="c.id">
-        <router-link
-          @click="handleClick(c)"
-          :to="{
-            path: 'Category',
-            query: { id: c.id },
-          }"
-        >
-          <el-card :body-style="{ padding: '0px' }">
-            <img :src="c.coverUrl" class="image" />
-            <div style="padding: 14px; display: flex; justify-content: center">
-              <span>{{ c.name.chinese }}</span>
-            </div>
-          </el-card>
-        </router-link>
+        <div class="imgCard">
+          <router-link
+            @click="handleClick(c)"
+            :to="{
+              path: 'Category',
+              query: { id: c.id },
+            }"
+          >
+            <el-card :body-style="{ padding: '0px' }">
+              <img :src="c.coverUrl" class="image" fit="contain" />
+              <div
+                style="padding: 14px; display: flex; justify-content: center"
+              >
+                <span>{{ c.name.chinese }}</span>
+              </div>
+            </el-card>
+          </router-link>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -60,7 +64,11 @@ export default {
   margin: 20px 30px;
   .image {
     width: 100%;
+    height: 250px;
     display: block;
+  }
+  .imgCard {
+    margin-bottom: 20px;
   }
 }
 </style>
